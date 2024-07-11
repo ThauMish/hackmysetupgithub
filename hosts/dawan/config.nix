@@ -288,7 +288,7 @@
       LC_TELEPHONE = "fr_FR.UTF-8";
       LC_TIME = "fr_FR.UTF-8";
     };
-  }
+  };
   
   # Services to start
   services = {
