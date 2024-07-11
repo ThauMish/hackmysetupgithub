@@ -94,7 +94,7 @@
   vm.guest-services.enable = false;
   local.hardware-clock.enable = false;
 
-
+  programs.zsh.enable = true
   programs = {
     firefox.enable = false;
     starship = {
