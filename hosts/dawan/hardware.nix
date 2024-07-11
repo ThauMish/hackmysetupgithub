@@ -27,12 +27,12 @@
   };
 
   fileSystems."/boot" = {
-    device = "/dev/nvme0n1p2";
+    device = "/dev/__DISK__p2";
     fsType = "ext4";
   };
 
   fileSystems."/boot/efi" = {
-    device = "/dev/nvme0n1p1";
+    device = "/dev/__DISK__p1";
     fsType = "vfat";
   };
 

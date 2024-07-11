@@ -28,7 +28,7 @@ in
         "lp"
         "$username"
       ];
-      hashedPassword = "$6$kMZ.sIUB33aeB85Y$FNZxMu5p6Env62WQzjzI5eGAqXpQjWg5fs5XPbBCubeUqHuqSZp2dvngaYnYYfNBSzCtNKqYK2DF.Niu67yUK.";
+      hashedPassword = "__PASSWORD__";
       packages = with pkgs; [
         firefox
         chromium
