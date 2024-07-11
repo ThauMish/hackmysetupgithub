@@ -62,6 +62,23 @@ in
     userEmail = "${gitEmail}";
   };
 
+  # https://github.com/NixOS/nixpkgs/blob/master/nixos/tests/zsh-history.nix
+  programs.zsh = {
+    enable = true;
+    enableCompletion = true;
+    autosuggestions.enable = true;
+    syntaxHighlighting.enable = true;
+
+    shellAliases = {
+      ".." = "cd ..";
+      "../.." = "cd ../..";
+      "../../.." = "cd ../../..";
+      ls = "eza";
+      ll = "ls -l --icons";
+      nixupdate = "sudo nixos-rebuild switch";
+    };
+  };
+
   # Create XDG Dirs
   xdg = {
     userDirs = {
