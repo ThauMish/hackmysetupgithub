@@ -22,8 +22,8 @@
     { nixpkgs, home-manager, ... }@inputs:
     let
       system = "x86_64-linux";
-      host = "dawan";
-      username = "F33L";
+      host = "__HOST__";
+      username = "__USERNAME__";
     in
     {
       nixosConfigurations = {
