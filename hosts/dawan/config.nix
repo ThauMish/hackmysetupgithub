@@ -289,6 +289,8 @@
       LC_TIME = "fr_FR.UTF-8";
     };
   };
+
+  console.keyMap = "fr";
   
   # Services to start
   services = {
