@@ -98,7 +98,7 @@
   programs = {
     firefox.enable = false;
     starship = {
-      enable = true;
+      enable = false;
       settings = {
         add_newline = false;
         buf = {
@@ -186,7 +186,6 @@
     docker
     virtualbox
     tmux
-    nautilus
     fzf
     vim
     wget

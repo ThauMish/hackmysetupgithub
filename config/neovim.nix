@@ -19,15 +19,12 @@ in
         gopls
         xclip
         wl-clipboard
-        luajitPackages.lua-lsp
         nil
         rust-analyzer
         yaml-language-server
         pyright
         marksman
-        docker-compose
         docker
-        typescript-language-server
         bash-language-server
       ];
       plugins = with pkgs.vimPlugins; [
@@ -62,7 +59,6 @@ in
         vim-tmux-navigator
         gitsigns-nvim
         which-key-nvim
-        semgrep
       ];
       extraConfig = ''
         set noemoji
@@ -93,19 +89,29 @@ in
         augroup END
       '';
       extraLuaConfig = ''
-        ${builtins.readFile ./nvim/options.lua}
-        ${builtins.readFile ./nvim/keymaps.lua}
-        ${builtins.readFile ./nvim/plugins/alpha.lua}
-        ${builtins.readFile ./nvim/plugins/autopairs.lua}
-        ${builtins.readFile ./nvim/plugins/auto-session.lua}
-        ${builtins.readFile ./nvim/plugins/comment.lua}
-        ${builtins.readFile ./nvim/plugins/cmp.lua}
-        ${builtins.readFile ./nvim/plugins/lsp.lua}
-        ${builtins.readFile ./nvim/plugins/nvim-tree.lua}
-        ${builtins.readFile ./nvim/plugins/telescope.lua}
-        ${builtins.readFile ./nvim/plugins/todo-comments.lua}
-        ${builtins.readFile ./nvim/plugins/treesitter.lua}
-        ${builtins.readFile ./nvim/plugins/fine-cmdline.lua}
+        ${builtins.readFile ./nvim/init.lua}
+        ${builtins.readFile ./nvim/lua/core/bootstrap.lua}
+        ${builtins.readFile ./nvim/lua/core/default_config.lua}
+        ${builtins.readFile ./nvim/lua/core/init.lua}
+        ${builtins.readFile ./nvim/lua/core/mappings.lua}
+        ${builtins.readFile ./nvim/lua/core/utils.lua}
+        ${builtins.readFile ./nvim/lua/custom/chadrc.lua}
+        ${builtins.readFile ./nvim/lua/custom/configs/conform.lua}
+        ${builtins.readFile ./nvim/lua/custom/configs/lspconfig.lua}
+        ${builtins.readFile ./nvim/lua/custom/configs/overrides.lua}
+        ${builtins.readFile ./nvim/lua/custom/highlights.lua}
+        ${builtins.readFile ./nvim/lua/custom/init.lua}
+        ${builtins.readFile ./nvim/lua/custom/mappings.lua}
+        ${builtins.readFile ./nvim/lua/custom/plugins.lua}
+        ${builtins.readFile ./nvim/lua/custom/treesitter.lua}
+        ${builtins.readFile ./nvim/lua/plugins/configs/cmp.lua}
+        ${builtins.readFile ./nvim/lua/plugins/configs/lazy_nvim.lua}
+        ${builtins.readFile ./nvim/lua/plugins/configs/lspconfig.lua}
+        ${builtins.readFile ./nvim/lua/plugins/configs/mason.lua}
+        ${builtins.readFile ./nvim/lua/plugins/configs/nvimtree.lua}
+        ${builtins.readFile ./nvim/lua/plugins/configs/others.lua}
+        ${builtins.readFile ./nvim/lua/plugins/configs/telescope.lua}
+        ${builtins.readFile ./nvim/lua/plugins/configs/treesitter.lua}
         require("ibl").setup()
         require("bufferline").setup{}
         require("lualine").setup({
