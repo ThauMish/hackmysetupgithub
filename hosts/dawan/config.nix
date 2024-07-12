@@ -183,6 +183,7 @@
   };
 
   environment.systemPackages = with pkgs; [
+    assh
     docker
     virtualbox
     tmux
