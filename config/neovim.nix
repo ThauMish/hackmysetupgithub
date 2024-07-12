@@ -61,7 +61,6 @@ in
         telescope-fzf-native-nvim
         vim-tmux-navigator
         gitsigns-nvim
-        nvim-lsp-installer
         which-key-nvim
         semgrep
       ];
