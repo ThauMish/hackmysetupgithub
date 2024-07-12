@@ -183,6 +183,8 @@
   };
 
   environment.systemPackages = with pkgs; [
+    docker
+    virtualbox
     tmux
     nautilus
     fzf
