@@ -3,22 +3,21 @@
 {
   imports = [ ];
 
-  boot = {                                                                         
+  boot = {
     initrd.availableKernelModules = [ "xhci_pci" "ahci" "nvme" "usb_storage" "usbhid" "sd_mod" ];
-    initrd.kernelModules = [ "dm-snapshot" ];                                      
+    initrd.kernelModules = [ "dm-snapshot" ];
     kernelModules = [ "kvm-intel" ];
-    initrd.luks.devices = {                                                        
-      root = {                                                                     
+    initrd.luks.devices = {
+      root = {                                             
         device = "/dev/nvme0n1p3";                                                 
         preLVM = true;                                                             
         allowDiscards = true;                                                      
       };                                                                           
-    };                                                                             
-  };                                                                               
-                                                                                   
-  nixpkgs.hostPlatform = lib.mkDefault "x86_64-linux";                             
+    };                                                
+  };                                                                                                       
+  nixpkgs.hostPlatform = lib.mkDefault "x86_64-linux";
   hardware.cpu.intel.updateMicrocode = lib.mkDefault config.hardware.enableRedistributableFirmware;
-  networking.useDHCP = lib.mkDefault true;                                         
+  networking.useDHCP = lib.mkDefault true;
 
 
   fileSystems."/" = {

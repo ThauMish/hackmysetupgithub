@@ -83,7 +83,7 @@
     };
   };
 
-  # Extra Module Options
+# Extra Module Options
   drivers.amdgpu.enable = false;
   drivers.nvidia.enable = true;
   drivers.nvidia-prime = {
@@ -183,6 +183,9 @@
   };
 
   environment.systemPackages = with pkgs; [
+    tmux
+    nautilus
+    fzf
     vim
     wget
     btrfs-assistant
