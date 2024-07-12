@@ -27,6 +27,12 @@ in
     ../../config/wlogout.nix
   ];
 
+
+  home.file.".config/starship.toml" = {
+    source = ../../config/starship;
+    recursive = true;
+  };
+
   # Place Files Inside Home Directory
   home.file."Pictures/Wallpapers" = {
     source = ../../config/wallpapers;
