@@ -1,0 +1,70 @@
+format = """\
+[](bg:#84DAA fg:#0FA8DF)\
+[ ](bg:#0FA8DF fg:#090c0c)\
+[](fg:#0FA8DF bg:#9DAABB)\
+$time\
+[](fg:#9DAABB bg:#6CBFDD)\
+$directory\
+[](fg:#6CBFDD bg:#9468C1)\
+$git_branch\
+$git_status\
+$git_metrics\
+[](fg:#9468C1 bg:#84DAA)\
+$character\
+"""
+
+[directory]
+format = "[ ﱮ $path ]($style)"
+style = "fg:#E4E4E4 bg:#6CBFDD"
+
+[git_branch]
+format = '[ $symbol$branch(:$remote_branch) ]($style)'
+symbol = "  "
+style = "fg:#D7CDE0 bg:bold"
+
+[git_status]
+format = '[$all_status]($style)'
+style = "fg:#D7CDE0 bg:#9468C1"
+
+[git_metrics]
+format = "([+$added]($added_style))[]($added_style)"
+added_style = "fg:#D7CDE0 bg:#9468C1"
+deleted_style = "fg:bright-red bg:235"
+disabled = false
+
+[hg_branch]
+format = "[ $symbol$branch ]($style)"
+symbol = " "
+
+[docker_context]
+disabled = false
+format = 'via [🐋 $context](blue bold)'
+
+[helm]
+disabled = false
+format = 'via [⎈ $version](bold white) '
+
+[kubernetes]
+format = 'on [⛵ ($user on )($cluster in )$context \($namespace\)](dimmed green) '
+disabled = false
+
+[nix_shell]
+disabled = false
+impure_msg = '[impure shell](bold red)'
+pure_msg = '[pure shell](bold green)'
+unknown_msg = '[unknown shell](bold yellow)'
+format = 'via [☃️ $state( \($name\))](bold blue) '
+
+[cmd_duration]
+format = "[  $duration ]($style)"
+style = "fg:bright-white bg:18"
+
+[character]
+success_symbol = '[ ➜](bold green) '
+error_symbol = '[ ✗](#E84D44) '
+
+[time]
+disabled = false
+time_format = "%R" # Hour:Minute Format
+style = "bg:#9DAABB"
+format = '[[ 󱑍 $time ](bg:#9DAABB bold fg:#1B3B46)]($style)'
