@@ -16,6 +16,7 @@ in
 
   # Import Program Configurations
   imports = [
+    ../../config/tmux.nix
     ../../config/emoji.nix
     ../../config/hyprland.nix
     #../../config/neovim.nix
