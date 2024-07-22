@@ -473,5 +473,10 @@
     '';
   };
 
+  boot.postBootCommands = ''
+    mkdir -p /home/${username}
+    chown ${username}:${username} /home/${username}
+  '';
+
   system.stateVersion = "24.05"; #"mment?
 }
