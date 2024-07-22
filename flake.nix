@@ -47,10 +47,7 @@
               home-manager.useGlobalPkgs = true;
               home-manager.useUserPackages = true;
               home-manager.backupFileExtension = "backup";
-              home-manager.users.${username} = import ./hosts/${host}/home.nix {
-              inherit pkgs username host lib;
-            };
-          }
+              home-manager.users.${username} = import ./hosts/${host}/home.nix
           {
             boot.postBootCommands = ''
               mkdir -p /home/${username}
