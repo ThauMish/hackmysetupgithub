@@ -441,7 +441,7 @@
     after = [ "sound.target" ];
     serviceConfig = {
       Type = "oneshot";
-      ExecStart = "${pkgs.alsa-utils}/bin/alsactl store";
+      ExecStart = lib.mkForce "${pkgs.alsa-utils}/bin/alsactl store";
       RemainAfterExit = true;
     };
     wantedBy = [ "multi-user.target" ];
@@ -453,26 +453,25 @@
     before = [ "sound.target" ];
     serviceConfig = {
       Type = "oneshot";
-      ExecStart = "${pkgs.alsa-utils}/bin/alsactl restore";
+      ExecStart = lib.mkForce "${pkgs.alsa-utils}/bin/alsactl restore";
       RemainAfterExit = true;
     };
     wantedBy = [ "sysinit.target" ];
   };
 
-  environment.etc."alsa".source = "${pkgs.alsa-utils}/etc";
+  #environment.etc."alsa".source = lib.mkForce "${pkgs.alsa-utils}/etc";
+
   environment.etc."asound.state" = {
-    source = "/var/lib/alsa/asound.state";
+    source = lib.mkForce "/var/lib/alsa/asound.state";
     mode = "0644";
-  };
-
-  environment.etc."asound.state".text = ''
-    state {
-      hardware {
-        hw_name = "";
+    text = ''
+      state {
+        hardware {
+          hw_name = "";
+        }
       }
-    }
-  '';
-
+    '';
+  };
 
   system.stateVersion = "24.05"; #"mment?
 }

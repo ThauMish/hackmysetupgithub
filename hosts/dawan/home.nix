@@ -16,10 +16,10 @@ in
 
   # Import Program Configurations
   imports = [
-    ../../config/tmux.nix
+    #../../config/tmux.nix
     ../../config/emoji.nix
     ../../config/hyprland.nix
-    ../../config/nvim.nix
+    #../../config/nvim.nix
     ../../config/rofi/rofi.nix
     ../../config/rofi/config-emoji.nix
     ../../config/rofi/config-long.nix
@@ -28,7 +28,19 @@ in
     ../../config/wlogout.nix
   ];
 
+  home.file.".tmux.conf" = {
+  source = ../../config/tmux/.tmux.conf;
+  };
 
+  home.file.".tmux.conf.local" = {
+  source = ../../config/tmux/.tmux.conf.local;
+  };
+
+  home.file.".config/nvim" = {
+  source = ../../config/nvim;
+  recursive = true;
+  };
+ 
   home.file.".config/starship.toml" = {
     source = ../../config/starship;
     recursive = true;
