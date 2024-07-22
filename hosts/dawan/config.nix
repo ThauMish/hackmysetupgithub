@@ -433,5 +433,46 @@
     driSupport32Bit = true;
   };
 
+  services.udev.packages = [ pkgs.alsa-utils ];
+
+  systemd.services.alsa-store = {
+    enable = true;
+    description = "Store Sound Card State";
+    after = [ "sound.target" ];
+    serviceConfig = {
+      Type = "oneshot";
+      ExecStart = "${pkgs.alsa-utils}/bin/alsactl store";
+      RemainAfterExit = true;
+    };
+    wantedBy = [ "multi-user.target" ];
+  };
+
+  systemd.services.alsa-restore = {
+    enable = true;
+    description = "Restore Sound Card State";
+    before = [ "sound.target" ];
+    serviceConfig = {
+      Type = "oneshot";
+      ExecStart = "${pkgs.alsa-utils}/bin/alsactl restore";
+      RemainAfterExit = true;
+    };
+    wantedBy = [ "sysinit.target" ];
+  };
+
+  environment.etc."alsa".source = "${pkgs.alsa-utils}/etc";
+  environment.etc."asound.state" = {
+    source = "/var/lib/alsa/asound.state";
+    mode = "0644";
+  };
+
+  environment.etc."asound.state".text = ''
+    state {
+      hardware {
+        hw_name = "";
+      }
+    }
+  '';
+
+
   system.stateVersion = "24.05"; #"mment?
 }
