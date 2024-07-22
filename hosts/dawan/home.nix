@@ -12,7 +12,7 @@ in
   # Home Manager Settings
   home.username = "${username}";
   home.homeDirectory = lib.mkForce "/home/${username}";
-  home.stateVersion = "23.11";
+  home.stateVersion = "24.05";
 
   # Import Program Configurations
   imports = [
