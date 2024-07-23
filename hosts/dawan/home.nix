@@ -19,6 +19,7 @@ in
     #../../config/tmux.nix
     ../../config/emoji.nix
     ../../config/hyprland.nix
+    ../../config/ollama.nix
     #../../config/nvim.nix
     ../../config/rofi/rofi.nix
     ../../config/rofi/config-emoji.nix

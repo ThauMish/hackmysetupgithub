@@ -15,6 +15,7 @@
     ../../modules/amd-drivers.nix
     ../../modules/nvidia-drivers.nix
     ../../modules/nvidia-prime-drivers.nix
+    ../../modules/nvidia-docker.nix
     ../../modules/intel-drivers.nix
     ../../modules/vm-guest-services.nix
     ../../modules/local-hardware-clock.nix
@@ -42,6 +43,7 @@
     luks.devices = {
       root = {
         device = "/dev/__DISK__p3";
+       #keyFile = "/dev/nvme0n1p1
         keyFile = null;
       };
     };
