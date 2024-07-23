@@ -42,7 +42,7 @@
     luks.devices = {
       root = {
         device = "/dev/__DISK__p3";
-        keyFile = "/boot/crypto_keyfile.bin";
+        keyFile = null;
       };
     };
   };
