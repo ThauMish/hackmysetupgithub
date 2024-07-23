@@ -485,10 +485,25 @@
     after = [ "network.target" "docker.service" ];
     wants = [ "docker.service" ];
     serviceConfig = {
-      ExecStart = "${pkgs.docker}/bin/docker run -d --rm --gpus=all -v ollama:/root/.ollama -p 11434:11434 --name ollama ollama/ollama";
-      ExecStop = "${pkgs.docker}/bin/docker stop ollama";
-      Restart = "always";
-    };
+      ExecStartPre = "${pkgs.docker}/bin/docker rm -f ollama";
+      ExecStart = ''
+        ${pkgs.docker}/bin/docker run -d --rm --gpus=all \
+        -e OLLAMA_HOST=http://0.0.0.0:11434 \
+        -e OLLAMA_MODELS=/root/.ollama/models \
+        -e OLLAMA_KEEP_ALIVE=5m0s \
+        -e OLLAMA_DEBUG=true \
+        -v /home/${username}/.ollama/models:/root/.ollama/models \
+        -p 11434:11434 \
+        --name ollama \
+        ollama/ollama serve
+      '';
+      #ExecStartPost = ''
+       # ${pkgs.bash}/bin/bash -c "until [ \"\$(${pkgs.docker}/bin/docker inspect -f {{.State.Running}} ollama)\" == \"true\" ]; do sleep 1; done; ${pkgs.docker}/bin/docker exec ollama ollama serve dolphin-mistral"
+      #'';
+      #ExecStop = "${pkgs.docker}/bin/docker stop ollama && ${pkgs.docker}/bin/docker rm ollama";
+      Restart = "on-failure";
+      RestartSec = 10;
+  };
       wantedBy = [ "multi-user.target" ];
   };
 

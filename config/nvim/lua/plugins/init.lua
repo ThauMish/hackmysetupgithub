@@ -275,6 +275,7 @@ local default_plugins = {
         mode = { "n", "v" },
       },
     },
+    model = "dolphin-mistral"
   },
 }
 
