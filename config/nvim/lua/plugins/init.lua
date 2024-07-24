@@ -254,8 +254,7 @@ local default_plugins = {
     end,
   },
 
-  -- ollama.nvim plugin configuration
-  {
+ {
     "nomnivore/ollama.nvim",
     dependencies = {
       "nvim-lua/plenary.nvim",
@@ -275,11 +274,9 @@ local default_plugins = {
         mode = { "n", "v" },
       },
     },
-    model = "dolphin-mistral"
   },
-}
 
-{
+  {
     "David-Kunz/gen.nvim",
     opts = {
         model = "dolphin-mistral", -- The default model to use.
@@ -290,23 +287,23 @@ local default_plugins = {
         init = function(options) pcall(io.popen, "ollama serve > /dev/null 2>&1 &") end,
         -- Function to initialize Ollama
         command = function(options)
-            local body = {model = options.model, stream = true}
-            return "curl --silent --no-buffer -X POST http://" .. options.host .. ":" .. options.port .. "/api/chat -d $body"
+            local body = '{ "model": "' .. options.model .. '", "stream": true }'
+            return "curl --silent --no-buffer -X POST http://" .. options.host .. ":" .. options.port .. "/api/chat -d '" .. body .. "'"
         end,
         display_mode = "float", -- The display mode. Can be "float" or "split" or "horizontal-split".
         show_prompt = false, -- Shows the prompt submitted to Ollama.
         show_model = false, -- Displays which model you are using at the beginning of your chat session.
         no_auto_close = false, -- Never closes the window automatically.
         debug = false -- Prints errors and the command which is run.
-    }
-},
+    },
+  },
 
-{
-  'stevearc/dressing.nvim',
-  opts = {},
-};
+  {
+    'stevearc/dressing.nvim',
+    opts = {},
+  },
 
-
+}
 
 
 local config = require("core.utils").load_config()
