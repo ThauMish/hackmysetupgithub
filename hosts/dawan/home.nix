@@ -28,6 +28,20 @@ in
     ../../config/waybar.nix
     ../../config/wlogout.nix
   ];
+  
+  home.file.".config/lvim" = {
+    source = pkgs.fetchFromGitLab {
+      owner = "publicentry";
+      repo = "lunar";
+      rev = "main";
+      sha256 = lib.fakeSha256; # Remplacez par le sha256 correct obtenu via nix-prefetch-git
+    };
+    recursive = true;
+  };
+
+  programs.bash.initExtra = ''
+    alias lvim="~/.local/bin/lvim"
+  '';
 
   home.file.".tmux.conf" = {
   source = ../../config/tmux/.tmux.conf;

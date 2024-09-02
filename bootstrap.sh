@@ -78,7 +78,6 @@ setup_flask(){
 
 }
 
-
 # Préparation du disque et configuration LUKS/LVM
 setup_disk() {
 
