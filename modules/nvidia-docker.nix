@@ -2,7 +2,7 @@
 
 {
   environment.systemPackages = with pkgs; [
-    nvidia-container-runtime
+    #nvidia-container-runtime
     nvidia-container-toolkit
   ];
 
