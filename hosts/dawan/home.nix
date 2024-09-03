@@ -29,13 +29,15 @@ in
     ../../config/wlogout.nix
   ];
   
+  lunarRepo = pkgs.fetchFromGitLab {
+    owner = "publicentry";
+    repo = "lunar";
+    rev = "main";
+    sha256 = lib.fakeSha256; # Remplacez par le sha256 correct obtenu via nix-prefetch-git
+  };
+
   home.file.".config/lvim" = {
-    source = pkgs.fetchFromGitLab {
-      owner = "publicentry";
-      repo = "lunar";
-      rev = "main";
-      sha256 = lib.fakeSha256; # Remplacez par le sha256 correct obtenu via nix-prefetch-git
-    };
+    source = lunarRepo;
     recursive = true;
   };
 
