@@ -43,10 +43,6 @@ in
     bash ${lunarRepo}/utils/installer/install.sh --yes
   '';
 
-  programs.bash.initExtra = ''
-    alias lvim="~/.local/bin/lvim"
-  '';
-
   home.file.".tmux.conf" = {
   source = ../../config/tmux/.tmux.conf;
   };
@@ -251,6 +247,7 @@ in
         ll = "eza -lh --icons --grid --group-directories-first";
         la = "eza -lah --icons --grid --group-directories-first";
         ".." = "cd ..";
+        lvim = "~/.local/bin/lvim"
       };
     };
     home-manager.enable = true;
