@@ -7,6 +7,14 @@
 }:
 let
   inherit (import ./variables.nix) gitUsername gitEmail;
+  
+  lunarRepo = pkgs.fetchFromGitLab {
+    owner = "publicentry";
+    repo = "lunar";
+    rev = "main";
+    sha256 = "0wvvi102ydrvsxjvn367dj40imcs7mqh522yi6i972kxis51i7zh"; # Remplacez par le sha256 correct obtenu via nix-prefetch-git
+  };
+
 in
 {
   # Home Manager Settings
@@ -29,13 +37,6 @@ in
     ../../config/wlogout.nix
   ];
   
-  lunarRepo = pkgs.fetchFromGitLab {
-    owner = "publicentry";
-    repo = "lunar";
-    rev = "main";
-    sha256 = lib.fakeSha256; # Remplacez par le sha256 correct obtenu via nix-prefetch-git
-  };
-
   home.file.".config/lvim" = {
     source = lunarRepo;
     recursive = true;
