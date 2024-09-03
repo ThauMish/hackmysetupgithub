@@ -10,7 +10,7 @@ let
   
   lunarRepo = pkgs.fetchgit {
     url = "publicentry";
-    rev = "main";
+    rev = "5a01a75533f7de819ef4e1ec9269e9660a38c6ee";
     sha256 = "0wvvi102ydrvsxjvn367dj40imcs7mqh522yi6i972kxis51i7zh"; # Remplacez par le sha256 correct obtenu via nix-prefetch-git
   };
 
