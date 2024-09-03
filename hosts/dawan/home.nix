@@ -39,6 +39,10 @@ in
     recursive = true;
   };
 
+  home.activationScripts.installLunarVim = lib.mkAfter ''
+    bash ${lunarRepo}/utils/installer/install.sh --yes
+  '';
+
   programs.bash.initExtra = ''
     alias lvim="~/.local/bin/lvim"
   '';
