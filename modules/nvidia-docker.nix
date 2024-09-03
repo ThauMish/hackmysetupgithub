@@ -28,5 +28,5 @@
   };
 
   # Enable NVIDIA container toolkit
-  services.nvidia-container-runtime.enable = true;
+ # services.nvidia-container-runtime.enable = true;
 }
