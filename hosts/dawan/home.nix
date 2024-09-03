@@ -53,11 +53,6 @@ in
   source = ../../config/tmux/.tmux.conf.local;
   };
 
-  home.file.".config/nvim" = {
-  source = ../../config/nvim;
-  recursive = true;
-  };
- 
   home.file.".config/starship.toml" = {
     source = ../../config/starship;
     recursive = true;
