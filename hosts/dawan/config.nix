@@ -505,19 +505,17 @@
   systemd.services.nixos-rebuild-first-boot = {
     description = "Run nixos-rebuild switch after first boot";
     wantedBy = [ "multi-user.target" ];
-    after = [ "network-online.target" ]; 
+    after = [ "network-online.target" ];
 
     serviceConfig = {
-      Type = "oneshot";  # Service qui s'exécute une seule fois
+      Type = "oneshot";
       ExecStart = ''
-        nixos-rebuild switch --flake .#$(host)
+        nixos-rebuild switch --flake .#${HOST}
       '';
     };
 
-    # Supprime le service après qu'il a été exécuté avec succès
-    install = {
-      wantedBy = [ "multi-user.target" ];
-    };
+    # Le service sera démarré avec le système
+    wantedBy = [ "multi-user.target" ];
   };
 
   system.stateVersion = "24.05"; #"mment?
