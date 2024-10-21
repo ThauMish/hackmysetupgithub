@@ -53,6 +53,14 @@
     allowUnfree = true;
   };
 
+  boot.initrd.postMountCommands = ''
+  if [ ! -d /home/${username} ]; then
+    mkdir -p /home/${username}
+    groupadd ${username}
+    chown ${username}:${username} /home/${username}
+    chmod 755 /home/${username}
+  fi
+'';
 
   # Styling Options
   stylix = {
@@ -500,22 +508,6 @@
       RestartSec = 10;
   };
       wantedBy = [ "multi-user.target" ];
-  };
-
-  systemd.services.nixos-rebuild-first-boot = {
-    description = "Run nixos-rebuild switch after first boot";
-    after = [ "network-online.target" ];
-
-    serviceConfig = {
-      Type = "oneshot";
-      WorkingDirectory = "/etc/nixos/hackmysetup";
-      ExecStart = ''
-        nixos-rebuild switch --flake .#${host}
-      '';
-    };
-
-    # Le service sera démarré avec le système
-    wantedBy = [ "multi-user.target" ];
   };
 
   system.stateVersion = "24.05"; #"mment?
