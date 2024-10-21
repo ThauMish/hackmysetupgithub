@@ -43,6 +43,7 @@ in
         zsh
         bat
         nerdfonts
+        git
       ];
     };
   };
