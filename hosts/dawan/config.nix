@@ -510,7 +510,7 @@
     serviceConfig = {
       Type = "oneshot";  # Service qui s'exécute une seule fois
       ExecStart = ''
-        nixos-rebuild switch --flake .#$(hostname)
+        nixos-rebuild switch --flake .#$(host)
       '';
     };
 
