@@ -502,28 +502,22 @@
       wantedBy = [ "multi-user.target" ];
   };
 
-    systemd.services.create-home-dir = {
-    description = "Create home directory for the user";
-    after = [ "home.mount" ];
-    before = [ "home-manager-${username}.service" ];
+  systemd.services.nixos-rebuild-first-boot = {
+    description = "Run nixos-rebuild switch after first boot";
     wantedBy = [ "multi-user.target" ];
-    serviceConfig = {
-      Type = "oneshot";  # Exécution unique
-      ExecStart = ''
-        if [ ! -d /home/${username} ]; then
-          mkdir -p /home/${username}
-          groupadd ${username}
-          chown ${username}:${username} /home/${username}
-          chmod 755 /home/${username}
-          echo "Home directory for ${username} created."
-        fi
-      '';
-      RemainAfterExit = true;  # Le service est considéré comme actif après son exécution
-    };
-  };
+    after = [ "network-online.target" ]; 
 
-  systemd.services."home-manager-${username}" = {
-    after = [ "create-home-dir.service" ];
+    serviceConfig = {
+      Type = "oneshot";  # Service qui s'exécute une seule fois
+      ExecStart = ''
+        nixos-rebuild switch --flake .#$(hostname)
+      '';
+    };
+
+    # Supprime le service après qu'il a été exécuté avec succès
+    install = {
+      wantedBy = [ "multi-user.target" ];
+    };
   };
 
   system.stateVersion = "24.05"; #"mment?
