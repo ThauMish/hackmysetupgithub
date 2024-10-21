@@ -484,7 +484,7 @@
     fi
   '';
 
-  systemd.services."home-manager-F33L" = {
+  systemd.services."home-manager-${username}" = {
     after = [ "home.mount" ];
   };
 
