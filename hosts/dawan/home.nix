@@ -8,11 +8,11 @@
 let
   inherit (import ./variables.nix) gitUsername gitEmail;
   
-  #lunarRepo = pkgs.fetchgit {
-  #  url = "publicentry";
-  #  rev = "5a01a75533f7de819ef4e1ec9269e9660a38c6ee";
-  #  sha256 = "0wvvi102ydrvsxjvn367dj40imcs7mqh522yi6i972kxis51i7zh"; # Remplacez par le sha256 correct obtenu via nix-prefetch-git
-  #};
+  lunarRepo = pkgs.fetchgit {
+    url = "https://gitlab.dawan.fr/publicentry/lunar.git";
+    rev = "cf7f47ba274f5c96ad156524f0031d32870c3408";  # Révision obtenue via nix-prefetch-git
+    sha256 = "06sgvlam5fns5ka9r98x9flrz5xzz1g76z4cs02i9v670k620myh";  # hash obtenu via nix-prefetch-git
+  };
 
 in
 {
@@ -35,14 +35,14 @@ in
     ../../config/wlogout.nix
   ];
   
-  #home.file.".config/lvim" = {
-  #  source = lunarRepo;
-  #  recursive = true;
-  #};
+  home.file.".config/lvim" = {
+    source = lunarRepo;
+    recursive = true;
+  };
 
-  #home.activation.installLunarVim = lib.mkAfter ''
-  #  bash ${lunarRepo}/utils/installer/install.sh --yes
-  #'';
+  home.activation.installLunarVim = lib.mkAfter ''
+    ${pkgs.bash}/bin/bash ${lunarRepo}/utils/installer/install.sh --yes
+  '';
 
   home.file.".tmux.conf" = {
   source = ../../config/tmux/.tmux.conf;
