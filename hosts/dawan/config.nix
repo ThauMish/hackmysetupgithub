@@ -504,7 +504,6 @@
 
   systemd.services.nixos-rebuild-first-boot = {
     description = "Run nixos-rebuild switch after first boot";
-    wantedBy = [ "multi-user.target" ];
     after = [ "network-online.target" ];
 
     serviceConfig = {
