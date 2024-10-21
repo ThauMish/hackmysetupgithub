@@ -476,10 +476,18 @@
   };
 
   boot.postBootCommands = ''
-    mkdir -p /home/${username}
-    chown ${username}:${username} /home/${username}
+    if [ ! -d /home/${username} ]; then
+        sleep 10
+        mkdir -p /home/${username}
+        groupadd ${username}
+        chown ${username}:${username} /home/${username}
+    fi
   '';
-  
+
+  systemd.services."home-manager-F33L" = {
+    after = [ "home.mount" ];
+  };
+
   systemd.services.ollama = {
     description = "Ollama LLM Container";
     after = [ "network.target" "docker.service" ];
