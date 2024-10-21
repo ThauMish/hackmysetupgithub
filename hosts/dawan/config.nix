@@ -475,21 +475,6 @@
     '';
   };
 
-  boot.postBootCommands = ''
-    if [ ! -d /home/${username} ]; then
-        sleep 10
-        mkdir -p /home/${username}
-        groupadd ${username}
-        chown ${username}:${username} /home/${username}
-    fi
-  '';
-
-  systemd.services."home-manager-${username}" = {
-    after = [ "home.mount" ];
-  };
-
-  systemd.services.greetd.after = [ "home.mount" ];
-
   systemd.services.ollama = {
     description = "Ollama LLM Container";
     after = [ "network.target" "docker.service" ];
@@ -516,6 +501,21 @@
   };
       wantedBy = [ "multi-user.target" ];
   };
+
+  systemd.services.create-home-dir = {
+  description = "Create home directory for the user ${username} if it does not exist";
+  after = [ "home.mount" ];
+  wantedBy = [ "multi-user.target" ];
+  script = ''
+    if [ ! -d /home/${username} ]; then
+      mkdir -p /home/${username}
+      groupadd ${username}
+      chown ${username}:${username} /home/${username}
+      chmod 755 /home/${username}
+      echo "Created home directory for ${username}"
+    fi
+  '';
+};
 
   system.stateVersion = "24.05"; #"mment?
 }
