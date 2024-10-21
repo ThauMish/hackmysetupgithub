@@ -508,6 +508,7 @@
 
     serviceConfig = {
       Type = "oneshot";
+      WorkingDirectory = "/etc/nixos/hackmysetup";
       ExecStart = ''
         nixos-rebuild switch --flake .#${host}
       '';
