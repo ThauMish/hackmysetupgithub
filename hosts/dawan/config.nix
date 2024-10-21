@@ -53,15 +53,9 @@
     allowUnfree = true;
   };
 
-  boot.initrd.postMountCommands = ''
-  if [ ! -d /home/${username} ]; then
-    mkdir -p /home/${username}
-    groupadd ${username}
-    chown ${username}:${username} /home/${username}
-    chmod 755 /home/${username}
-  fi
-'';
-
+  systemd.tmpfiles.rules = [
+  "d /home/${username} 0755 ${username} ${username} -"
+  ];
   # Styling Options
   stylix = {
     enable = true;
