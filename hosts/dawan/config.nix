@@ -488,6 +488,8 @@
     after = [ "home.mount" ];
   };
 
+  systemd.services.greetd.after = [ "home.mount" ];
+
   systemd.services.ollama = {
     description = "Ollama LLM Container";
     after = [ "network.target" "docker.service" ];
