@@ -502,20 +502,29 @@
       wantedBy = [ "multi-user.target" ];
   };
 
-  systemd.services.create-home-dir = {
-  description = "Create home directory for the user ${username} if it does not exist";
-  after = [ "home.mount" ];
-  wantedBy = [ "multi-user.target" ];
-  script = ''
-    if [ ! -d /home/${username} ]; then
-      mkdir -p /home/${username}
-      groupadd ${username}
-      chown ${username}:${username} /home/${username}
-      chmod 755 /home/${username}
-      echo "Created home directory for ${username}"
-    fi
-  '';
-};
+    systemd.services.create-home-dir = {
+    description = "Create home directory for the user";
+    after = [ "home.mount" ];
+    before = [ "home-manager-${username}.service" ];
+    wantedBy = [ "multi-user.target" ];
+    serviceConfig = {
+      Type = "oneshot";  # Exécution unique
+      ExecStart = ''
+        if [ ! -d /home/${username} ]; then
+          mkdir -p /home/${username}
+          groupadd ${username}
+          chown ${username}:${username} /home/${username}
+          chmod 755 /home/${username}
+          echo "Home directory for ${username} created."
+        fi
+      '';
+      RemainAfterExit = true;  # Le service est considéré comme actif après son exécution
+    };
+  };
+
+  systemd.services."home-manager-${username}" = {
+    after = [ "create-home-dir.service" ];
+  };
 
   system.stateVersion = "24.05"; #"mment?
 }
