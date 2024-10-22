@@ -1,4 +1,4 @@
-{
+ {
   description = "ZaneyOS";
 
   inputs = {
@@ -8,7 +8,7 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
     stylix.url = "github:danth/stylix";
-    fine-cmdline = {
+    fine-cmdline = {    
       url = "github:VonHeikemen/fine-cmdline.nvim";
       flake = false;
     };
@@ -20,9 +20,8 @@
       pkgs = import nixpkgs { inherit system; };
       lib = nixpkgs.lib;
 
-      # Variables qui seront remplacées par le script bootstrap.sh
-      host = "__HOST__";
-      username = "__USERNAME__";
+      host = "pc-thomas";
+      username = "thomas";
     in
     {
       nixosConfigurations = {
@@ -36,25 +35,22 @@
           };
 
           modules = [
-            # Importation du fichier config.nix commun
             ./hosts/${host}/common/config.nix
 
-            # Importation des modules nécessaires
             inputs.stylix.nixosModules.stylix
             home-manager.nixosModules.home-manager
 
-            # Configuration Home Manager pour l'utilisateur
-            {
-              home-manager.useGlobalPkgs = true;
-              home-manager.useUserPackages = true;
-              home-manager.backupFileExtension = "backup";
+           {
+            home-manager.useGlobalPkgs = true;
+            home-manager.useUserPackages = true;
+            home-manager.backupFileExtension = "backup";
 
-              # Spécification de la configuration Home Manager de l'utilisateur
-              home-manager.users."${username}" = import ./hosts/${host}/${username}/home.nix;
-            }
-          ];
+            home-manager.users."${username}" = {
+              imports = [ ./hosts/${host}/${username}/home.nix ];
+            };
+           }
+         ];
         };
       };
     };
 }
-

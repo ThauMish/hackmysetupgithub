@@ -1,9 +1,14 @@
-{ pkgs, config, lib, ... }:
+{ config, ...}:
 
 let
+  pkgs = config.pkgs;
+  lib = pkgs.lib;
   username = "admin";
+  host = "pc-admin";
   inherit (import ../common/variables.nix) gitUsername gitEmail;
-  sharedHome = import ../common/home.nix { inherit pkgs config lib; };
+  sharedHome = import ../common/home.nix {
+    inherit pkgs lib username host config;
+  };
 in
 {
   imports = [ sharedHome ];
@@ -14,6 +19,5 @@ in
   home.packages = with pkgs; [
   ] ++ sharedHome.home.packages;
 
-  programs = sharedHome.programs // {
-  };
+  programs = sharedHome.programs // { };
 }

@@ -24,15 +24,15 @@ in
   # Import Program Configurations
   imports = [
     #../../config/tmux.nix
-    ../../config/emoji.nix
-    ../../config/hyprland.nix
+    ../../../config/emoji.nix
+    ../../../config/hyprland.nix
     #../../config/nvim.nix
-    ../../config/rofi/rofi.nix
-    ../../config/rofi/config-emoji.nix
-    ../../config/rofi/config-long.nix
-    ../../config/swaync.nix
-    ../../config/waybar.nix
-    ../../config/wlogout.nix
+    ../../../config/rofi/rofi.nix
+    ../../../config/rofi/config-emoji.nix
+    ../../../config/rofi/config-long.nix
+    ../../../config/swaync.nix
+    ../../../config/waybar.nix
+    ../../../config/wlogout.nix
   ];
   
   home.file.".config/lvim" = {

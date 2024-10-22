@@ -12,13 +12,13 @@
   imports = [
     ./hardware.nix
     ../users.nix
-    ../../modules/amd-drivers.nix
-    ../../modules/nvidia-drivers.nix
-    ../../modules/nvidia-prime-drivers.nix
-    ../../modules/nvidia-docker.nix
-    ../../modules/intel-drivers.nix
-    ../../modules/vm-guest-services.nix
-    ../../modules/local-hardware-clock.nix
+    ../../../modules/amd-drivers.nix
+    ../../../modules/nvidia-drivers.nix
+    ../../../modules/nvidia-prime-drivers.nix
+    ../../../modules/nvidia-docker.nix
+    ../../../modules/intel-drivers.nix
+    ../../../modules/vm-guest-services.nix
+    ../../../modules/local-hardware-clock.nix
   ];
 
   boot.loader.systemd-boot.enable = false;
@@ -61,7 +61,7 @@
   # Styling Options
   stylix = {
     enable = true;
-    image = ../../config/wallpapers/beautifulmountainscape.jpg;
+    image = ../../../config/wallpapers/beautifulmountainscape.jpg;
     polarity = "dark";
     opacity.terminal = 0.8;
     cursor.package = pkgs.bibata-cursors;
