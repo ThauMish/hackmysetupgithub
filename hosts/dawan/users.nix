@@ -16,10 +16,6 @@ in
       createHome = true;
       shell = pkgs.zsh;
       home = "/home/${username}";
-      openssh.authorizedKeys.keys = [
-        "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIArnSwudN1AQKbjzdJrHWgFRLdRK7JPXRyS+duxqsHVu dberaud@dawan.fr"
-        "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIEFKudMkQj7ZI5SbBxwTwOHiaxte285J/0ds/GsFqZGx tballet@dawan.fr"
-      ];
       extraGroups = [
         "networkmanager"
         "wheel"
