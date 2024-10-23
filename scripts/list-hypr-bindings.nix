@@ -1,8 +1,8 @@
 { pkgs, host, ... }:
 
 let
-  terminal = "kitty"
-  browser = "google-chrome-stable"
+  terminal = "kitty";
+  browser = "google-chrome-stable";
 in
 pkgs.writeShellScriptBin "list-hypr-bindings" ''
   yad --width=800 --height=650 \
