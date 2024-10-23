@@ -6,7 +6,7 @@
   ...
 }:
 let
-  inherit (import ./vt ariables.nix) gitUsername gitEmail;
+  inherit (import ./variables.nix) gitUsername gitEmail;
   
   lunarRepo = pkgs.fetchgit {
     url = "https://gitlab.dawan.fr/publicentry/lunar.git";
