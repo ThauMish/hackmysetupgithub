@@ -193,7 +193,8 @@ install_nixos() {
   gum log -t layout -s -l warn "This process can take a long time(10 minutes)"
   gum spin --spinner dot --title "Cleaning windows..." -- sleep 4 && reset
   mount -o remount,size=30G /
-  time nixos-install --no-root-password --cores 0 --max-jobs auto --root /mnt --flake .#$HOST
+  export NIXPKGS_ALLOW_UNFREE=1
+  time nixos-install --no-root-password --cores 0 --max-jobs auto --root /mnt --flake .#$HOST --impure
 }
 
 # Exécution des fonctions
