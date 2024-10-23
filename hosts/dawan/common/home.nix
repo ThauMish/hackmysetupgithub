@@ -6,7 +6,7 @@
   ...
 }:
 let
-  inherit (import ./variables.nix) gitUsername gitEmail;
+  inherit (import ./vt ariables.nix) gitUsername gitEmail;
   
   lunarRepo = pkgs.fetchgit {
     url = "https://gitlab.dawan.fr/publicentry/lunar.git";
@@ -45,33 +45,33 @@ in
   '';
 
   home.file.".tmux.conf" = {
-  source = ../../config/tmux/.tmux.conf;
+  source = ../../../config/tmux/.tmux.conf;
   };
 
   home.file.".tmux.conf.local" = {
-  source = ../../config/tmux/.tmux.conf.local;
+  source = ../../../config/tmux/.tmux.conf.local;
   };
 
   home.file.".config/starship.toml" = {
-    source = ../../config/starship;
+    source = ../../../config/starship;
     recursive = true;
   };
 
   # Place Files Inside Home Directory
   home.file."Pictures/Wallpapers" = {
-    source = ../../config/wallpapers;
+    source = ../../../config/wallpapers;
     recursive = true;
   };
   home.file.".config/fastfetch" = {
-    source = ../../config/fastfetch;
+    source = ../../../config/fastfetch;
     recursive = true;
   };
   home.file.".config/wlogout/icons" = {
-    source = ../../config/wlogout;
+    source = ../../../config/wlogout;
     recursive = true;
   };
-  home.file.".face.icon".source = ../../config/face.jpg;
-  home.file.".config/face.jpg".source = ../../config/face.jpg;
+  home.file.".face.icon".source = ../../../config/face.jpg;
+  home.file.".config/face.jpg".source = ../../../config/face.jpg;
   home.file.".config/swappy/config".text = ''
     [Default]
     save_dir=/home/${username}/Pictures/Screenshots
@@ -149,18 +149,18 @@ in
 
   # Scripts
   home.packages = [
-    (import ../../scripts/emopicker9000.nix { inherit pkgs; })
-    (import ../../scripts/task-waybar.nix { inherit pkgs; })
-    (import ../../scripts/squirtle.nix { inherit pkgs; })
-    (import ../../scripts/nvidia-offload.nix { inherit pkgs; })
-    (import ../../scripts/wallsetter.nix {
+    (import ../../../scripts/emopicker9000.nix { inherit pkgs; })
+    (import ../../../scripts/task-waybar.nix { inherit pkgs; })
+    (import ../../../scripts/squirtle.nix { inherit pkgs; })
+    (import ../../../scripts/nvidia-offload.nix { inherit pkgs; })
+    (import ../../../scripts/wallsetter.nix {
       inherit pkgs;
       inherit username;
     })
-    (import ../../scripts/web-search.nix { inherit pkgs; })
-    (import ../../scripts/rofi-launcher.nix { inherit pkgs; })
-    (import ../../scripts/screenshootin.nix { inherit pkgs; })
-    (import ../../scripts/list-hypr-bindings.nix {
+    (import ../../../scripts/web-search.nix { inherit pkgs; })
+    (import ../../../scripts/rofi-launcher.nix { inherit pkgs; })
+    (import ../../../scripts/screenshootin.nix { inherit pkgs; })
+    (import ../../../scripts/list-hypr-bindings.nix {
       inherit pkgs;
       inherit host;
     })

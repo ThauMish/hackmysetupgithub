@@ -1,11 +1,10 @@
-{ config, ...}:
+{ config, lib, ...}:
 
 let
-  pkgs = config.pkgs;
-  lib = pkgs.lib;
+  pkgs = config._module.args.pkgs;
   username = "stagiaire";
   host = "pc-stagiaire";
-  inherit (import ../common/variables.nix) gitUsername gitEmail;
+  #inherit (import ../common/variables.nix) gitUsername gitEmail;
   sharedHome = import ../common/home.nix {
     inherit pkgs lib username host config;
   };
