@@ -10,11 +10,9 @@
 
 let
   hyprplugins = inputs.hyprland-plugins.packages.${pkgs.system};
-  inherit (import ../hosts/${host}/variables.nix)
-    browser
-    terminal
-    extraMonitorSettings
-    ;
+    browser = "google-chrome-stable";
+    terminal = "kitty";
+    extraMonitorSettings = "";
 in
 with lib;
 {

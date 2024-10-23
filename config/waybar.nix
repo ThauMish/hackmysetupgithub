@@ -8,7 +8,7 @@
 
 let
   betterTransition = "all 0.3s cubic-bezier(.55,-0.68,.48,1.682)";
-  inherit (import ../hosts/${host}/variables.nix) clock24h;
+  clock24h = false;
 in
 with lib;
 {
