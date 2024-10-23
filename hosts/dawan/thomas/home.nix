@@ -1,4 +1,4 @@
-{ config, ...}:
+{ config, lib, ...}:
 
 let
   pkgs = config._module.args.pkgs;
