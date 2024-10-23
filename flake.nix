@@ -20,8 +20,8 @@
       pkgs = import nixpkgs { inherit system; };
       lib = nixpkgs.lib;
 
-      host = "pc-thomas";
-      username = "thomas";
+      host = "__HOST__";
+      username = "__USERNAME__";
     in
     {
       nixosConfigurations = {
