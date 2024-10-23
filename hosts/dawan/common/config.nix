@@ -237,7 +237,7 @@
     playerctl
     nh
     nixfmt-rfc-style
-    discord
+    #discord
     libvirt
     swww
     grim
@@ -249,7 +249,7 @@
     gimp
     pavucontrol
     tree
-    spotify
+    #spotify
     neovide
     greetd.tuigreet
   ];
