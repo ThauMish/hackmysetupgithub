@@ -213,6 +213,7 @@
     unrar
     libnotify
     v4l-utils
+    starship
     ydotool
     duf
     ncdu
