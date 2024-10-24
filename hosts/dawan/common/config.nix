@@ -190,6 +190,7 @@
 
   environment.systemPackages = with pkgs; [
     assh
+    startship
     docker
     virtualbox
     tmux
