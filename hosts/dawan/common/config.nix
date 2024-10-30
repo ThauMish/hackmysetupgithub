@@ -488,7 +488,7 @@
       ExecStartPre = "${pkgs.docker}/bin/docker rm -f ollama";
       ExecStart = ''
         ${pkgs.docker}/bin/docker run -d --rm --gpus=all \
-        -e OLLAMA_HOST=http://0.0.0.0:11434 \
+        -e OLLAMA_HOST=http://127.0.0.1:11434 \
         -e OLLAMA_MODELS=/root/.ollama/models \
         -e OLLAMA_KEEP_ALIVE=5m0s \
         -e OLLAMA_DEBUG=true \

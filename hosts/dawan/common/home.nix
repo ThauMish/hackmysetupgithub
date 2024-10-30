@@ -106,12 +106,20 @@ in
       ls = "eza";
       ll = "ls -l --icons";
       nixupdate = "sudo nixos-rebuild switch";
+<<<<<<< HEAD
       lvim = "exec -a lvim nvim -u \"/home/${username}/.config/lvim/init.lua\" \"$@\"";
+=======
+      lvim= "exec -a lvim nvim -u "/home/${username}/.config/lvim/init.lua" "$@" ";  
+>>>>>>> ff8426d ([UPDATE] fix lvim + starship)
     };
   };
 
   environment.variables = {
+<<<<<<< HEAD
     STARSHIP_CONFIG = "/home/${username}/.config/starship.toml";
+=======
+    STARSHIP_CONFIG = "/home/${username}/.config/starship.toml"; 
+>>>>>>> ff8426d ([UPDATE] fix lvim + starship)
   };
 
   # Create XDG Dirs
