@@ -110,9 +110,8 @@ in
     };
   };
 
-  environment.variables = {
+  home.sessionVariables = {
     STARSHIP_CONFIG = "/home/${username}/.config/starship.toml";
-    STARSHIP_CONFIG = "/home/${username}/.config/starship.toml"; 
   };
 
   # Create XDG Dirs
