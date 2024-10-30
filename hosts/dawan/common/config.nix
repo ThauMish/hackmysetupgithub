@@ -481,31 +481,27 @@
     '';
   };
 
-  systemd.services.ollama = {
-    description = "Ollama LLM Container";
-    after = [ "network.target" "docker.service" ];
-    wants = [ "docker.service" ];
-    serviceConfig = {
-      ExecStartPre = "${pkgs.docker}/bin/docker rm -f ollama";
-      ExecStart = ''
-        ${pkgs.docker}/bin/docker run -d --rm --gpus=all \
-        -e OLLAMA_HOST=http://127.0.0.1:11434 \
-        -e OLLAMA_MODELS=/root/.ollama/models \
-        -e OLLAMA_KEEP_ALIVE=5m0s \
-        -e OLLAMA_DEBUG=true \
-        -v /home/${username}/.ollama/models:/root/.ollama/models \
-        -p 11434:11434 \
-        --name ollama \
-        ollama/ollama serve
-      '';
-      #ExecStartPost = ''
-       # ${pkgs.bash}/bin/bash -c "until [ \"\$(${pkgs.docker}/bin/docker inspect -f {{.State.Running}} ollama)\" == \"true\" ]; do sleep 1; done; ${pkgs.docker}/bin/docker exec ollama ollama serve dolphin-mistral"
-      #'';
-      #ExecStop = "${pkgs.docker}/bin/docker stop ollama && ${pkgs.docker}/bin/docker rm ollama";
-      Restart = "on-failure";
-      RestartSec = 10;
-  };
-      wantedBy = [ "multi-user.target" ];
+  virtualisation.oci-containers = {
+    backend = "docker";
+    containers = {
+      ollama = {
+        ports = [ "127.0.0.1:11434:11434" ];
+        image = "ollama/ollama";
+        hostname = "ollama";
+        autoStart = true;
+        environment = {
+          OLLAMA_HOST = "http://127.0.0.1:11434";
+          OLLAMA_MODELS = "/root/.ollama/models";
+          OLLAMA_KEEP_ALIVE = "5m0s";
+          OLLAMA_DEBUG = "true";
+        };
+        volumes = [ "/home/${username}/.ollama/models:/root/.ollama/models" ];
+        extraOptions = [
+          "--gpus=all"
+          "--restart=always"
+        ];
+      };
+    };
   };
 
   system.stateVersion = "24.05"; #"mment?
