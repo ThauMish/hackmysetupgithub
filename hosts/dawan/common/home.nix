@@ -208,7 +208,6 @@ in
     };
     kitty = {
       enable = true;
-      package = pkgs.kitty;
       settings = {
         scrollback_lines = 2000;
         wheel_scroll_min_lines = 1;
