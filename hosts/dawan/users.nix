@@ -22,6 +22,7 @@ in
         "libvirtd"
         "scanner"
         "lp"
+        "docker"
         "$username"
       ];
       hashedPassword = "__PASSWORD__";
