@@ -53,7 +53,7 @@ in
   };
 
   home.file.".config/starship.toml" = {
-    source = ../../../config/starship;
+    source = ../../../config/starship/starship.toml;
     recursive = true;
   };
 
@@ -95,6 +95,10 @@ in
   # https://github.com/NixOS/nixpkgs/blob/master/nixos/tests/zsh-history.nix
   programs.zsh = {
     enable = true;
+    initExtra = ''
+      export STARSHIP_CONFIG="$HOME/.config/starship.toml"
+      eval "$(starship init zsh)"
+    '';
     enableCompletion = true;
     enableAutosuggestions = true;
     syntaxHighlighting.enable = true;
