@@ -191,7 +191,7 @@
   environment.systemPackages = with pkgs; [
     assh
     starship
-    docker
+    #docker
     virtualbox
     tmux
     fzf

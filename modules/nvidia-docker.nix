@@ -7,7 +7,7 @@
   virtualisation.docker = {
     enable = true;
     enableNvidia = true;
-    package = pkgs.docker;
+    package = pkgs.docker_26;
   };
 
   environment.variables = {
