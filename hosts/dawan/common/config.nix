@@ -304,7 +304,7 @@
   };
 
   console.keyMap = "fr";
-  
+  hardware.opengl.driSupport32Bit = true;  
   # Services to start
   services = {
     xserver = {
